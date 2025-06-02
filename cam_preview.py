@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 import numpy as np
 import time
-time.sleep(1)
+time.sleep(1) # allow camera to intiallize before running script
 import os
-os.system("unclutter-xfixes -idle 1 &")
+os.system("unclutter-xfixes -idle 1 &") # hide cursor when inactive
 from picamera2 import Picamera2
 import cv2
 
-#Configs for camera
+# Configs for camera
 os.environ["DISPLAY"] = ":0"
 picam2 = Picamera2()
+# set size and white balance
 config = picam2.create_preview_configuration({'size': (800,480),'format': 'RGB888'})
 picam2.configure(config)
 picam2.awb_mode = "on"
@@ -17,15 +18,15 @@ picam2.start()
 
 #GLOBAL VARIABLES
 
-recorded_frames = [] #recorded frames in memory (no FOIP concerns)
+recorded_frames = [] # recorded frames in memory (no FOIP concerns)
 playback_index = 0
 
-#button config
+# button config
 button_center = (800-60,60)
 button_radius = 40
 button_colour = (0,0,255)
 
-#flash animation
+# flash animation
 flash_duration = 5
 button_pressed = False
 flash_start_time = 0
@@ -38,8 +39,8 @@ cv2.setWindowProperty("Preview", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 def draw_button(frame, radius):
     cv2.circle(frame, button_center, radius, button_colour, -1)
 
-#call back function every time the button is clicked, checks that
-#mouse within button size
+# call back function every time the button is clicked, checks that
+# mouse within button size
 def record_callback(event, x, y, flags, param):
     global button_pressed, flash_start_time
     if event == cv2.EVENT_LBUTTONDOWN:
@@ -50,10 +51,10 @@ def record_callback(event, x, y, flags, param):
 
 cv2.setMouseCallback("Preview", record_callback)
 
-#main event loop
+# main event loop
 while True:
     frame = picam2.capture_array() # captures camera feed
-    if button_pressed == True: #start recording
+    if button_pressed == True: # start recording
         if time.time() - flash_start_time < flash_duration: # record for 5 seconds
             recorded_frames.append(frame.copy()) # appends recorded frame in memory
             # begins falshing animation for button
@@ -62,7 +63,7 @@ while True:
                 draw_button(frame, 0) # hides button
             else:
                 draw_button(frame, button_radius) # shows button
-        else: #Start playback
+        else: # Start playback
             if playback_index < len(recorded_frames):
                 frame = recorded_frames[playback_index]
                 draw_button(frame, 0) # hides button during playback
