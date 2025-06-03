@@ -14,7 +14,7 @@ To Build the project from a fresh install, follow the steps listed:
   7. At the end of the file under ```[all]``` add the 2 lines:
      ```
      [all]
-     dtoverlay=vc4-kms--dpi-hyperpixel4,rotate=270
+     dtoverlay=vc4-kms-dpi-hyperpixel4,rotate=270
      dtparam=rotate=90
      ```
      You can now save and close config.txt
