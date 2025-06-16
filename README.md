@@ -1,7 +1,7 @@
-# FreeCam | Digital Camera
+# PiCam | Digital Camera
 Raspberry pi based camera for open house presentation
 #
-FreeCam is a camera based on the [Rasperry Pi 4 B](https://www.pishop.ca/product/raspberry-pi-4-model-b-4gb/), the [Pimoroni Hyperpixel 4" Touch screen Display](https://www.pishop.ca/product/touch-hyperpixel-4-0-hi-res-display-for-raspberry-pi/), and the [HQ Camera Module](https://www.pishop.ca/product/raspberry-pi-hq-camera-cs/?searchid=0&search_query=hq+camera). The use of [this tripod](https://www.pishop.ca/product/tripod-for-raspberry-pi-hq-camera/) is also required to supply parts for the mount.
+PiCam is a camera based on the [Rasperry Pi 4 B](https://www.pishop.ca/product/raspberry-pi-4-model-b-4gb/), the [Pimoroni Hyperpixel 4" Touch screen Display](https://www.pishop.ca/product/touch-hyperpixel-4-0-hi-res-display-for-raspberry-pi/), and the [HQ Camera Module](https://www.pishop.ca/product/raspberry-pi-hq-camera-cs/?searchid=0&search_query=hq+camera). The use of [this tripod](https://www.pishop.ca/product/tripod-for-raspberry-pi-hq-camera/) is also required to supply parts for the mount.
 ⚠️The project requires the use of Raspberry Pi OS Bookworm (or later) to allow for proper Kernel drivers used in the display.
 
 To Build the project from a fresh install, follow the steps listed:
@@ -38,7 +38,7 @@ To Build the project from a fresh install, follow the steps listed:
 Upon pluggin in the pi, the script will run which will launch a kiosk-style full screen camera preview with a red record button in the top right.
 
 This project is intended to be used as a open house demo, and therefore locks the user out of exiting the preview, or any other functionality the pi may have. In order to exit the preview, connect an external keyboard and press ***'Q'*** on the keyboard.
-The program generally takes a few seconds to intiallize after recieving power and booting to the desktop, however if this does not happen run the script manually by opmening a terminal and running
+The program generally takes a few seconds to intiallize after recieving power and booting to the desktop, however if this does not happen run the script manually by opening a terminal and running
 
 ```
 python /home/*user*/Documents/DemoCam/cam_preview.py
